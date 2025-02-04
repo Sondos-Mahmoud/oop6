@@ -29,9 +29,51 @@
             Console.WriteLine($"Subtract: {Math.Subtract(num1, num2)}");
             Console.WriteLine($"Multiply: {Math.Multiply(num1, num2)}");
             Console.WriteLine($"Divide: {Math.Divide(num1, num2)}");
-            
-            #endregion
 
+            #endregion
+            #region MyRegion
+            Console.WriteLine("Enter your user type (Regular, Premium, or Guest):");
+            string userType = Console.ReadLine();
+
+            User user;
+            switch (userType.ToLower())
+            {
+                case "regular":
+                    Console.WriteLine("Enter your name:");
+                    string regularUserName = Console.ReadLine();
+                    user = new RegularUser(regularUserName);
+                    break;
+                case "premium":
+                    Console.WriteLine("Enter your name:");
+                    string premiumUserName = Console.ReadLine();
+                    user = new PremiumUser(premiumUserName);
+                    break;
+                case "guest":
+                    user = new GuestUser();
+                    break;
+
+                  
+                 
+            }
+
+            Console.WriteLine("Enter product price:");
+            decimal price = Convert.ToDecimal(Console.ReadLine());
+
+            Console.WriteLine("Enter product quantity:");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+
+            Discount discount = user.GetDiscount();
+            decimal discountAmount = discount?.CalculateDiscount(price, quantity) ?? 0;
+            decimal totalPrice = price * quantity - discountAmount;
+
+            Console.WriteLine($"User: {user.Name}");
+            Console.WriteLine($"Discount Applied: {discount?.Name ?? "No Discount"}");
+            Console.WriteLine($"Discount Amount: {discountAmount:C}");
+            Console.WriteLine($"Total Price: {totalPrice:C}");
+
+            Console.WriteLine("Thank you for using the E-commerce Discount Calculator!");
         }
+        #endregion
+
     }
-}
+    }
