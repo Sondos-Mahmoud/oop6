@@ -15,5 +15,10 @@ namespace oop6
         {
             return b != 0 ? (double)a / b : throw new DivideByZeroException("Cannot divide by zero.");
         }
+
+        internal static decimal Min(int quantity, int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
